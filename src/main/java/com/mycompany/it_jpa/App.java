@@ -24,7 +24,12 @@ public class App {
         Messaggio msg=new Messaggio("Pranzo...");
 
         em.getTransaction().begin();
-        em.merge(msg);
+        //em.merge(msg);
+        Messaggio finded = em.find(Messaggio.class, 1l); //1l--> long
+        System.out.println(finded);
+        finded.setTesto(finded.getTesto()+" adesso!");
+        em.merge(finded);        
         em.getTransaction().commit();
+        
     }
 }
